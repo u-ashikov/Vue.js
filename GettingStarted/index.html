@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue JS</title>
+
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-once>{{ title }}</h1>
+
+        <div>
+            <img width="300" height="300" v-bind:src="catImageLink" />
+        </div>
+
+        <input type="text" v-on:input='changeTitle'/>
+        <p>
+            {{title}}
+        </p>
+
+        <p v-html="rawHtml">Google</p>
+    </div>
+    
+    <script>
+        new Vue({
+        el: '#app',
+        data: {
+            title: 'Hello World!',
+            catImageLink: 'https://images.ctfassets.net/cnu0m8re1exe/6y85yBIxrIAGWM3rRzSI3Z/3a3a9ab9933d50d75d43129921ac540c/CatPetting_edited-2.jpg?w=650&h=433&fit=fill',
+            rawHtml: '<a href=\'www.google.com\'>Google</a>'
+        },
+        methods: {
+            changeTitle: function (event) {
+                this.title = event.target.value;
+            }
+        }
+    });
+    </script>
+</body>
+</html>
