@@ -12,9 +12,36 @@
         maxDamage = isSpecialAttack ? 20 : maxDamage;
 
         var playerAttackDamage = generateRandomNumberInRange(minDamage, maxDamage);
+
+        logAttack(playerAttackDamage, monsterAttackDamage);
     
         this.monsterBlood -= playerAttackDamage;
         this.playerBlood -= monsterAttackDamage;
+    }
+
+    function logAttack(playerAttackPoints, monsterAttackPoints, ) {
+        var playerAttackLogMessage = 'The player hits the monster for ' + playerAttackPoints;
+        var monsterAttackLogMessage = 'The monster hits the player for ' + monsterAttackPoints;
+
+        logMessage(monsterAttackLogMessage, 'danger');
+        logMessage(playerAttackLogMessage, 'primary');
+    }
+
+    function logHeal(playerHealPoints, monsterAttackPoints) {
+        logMessage('The player healed himself for ' + playerHealPoints, 'success');
+
+        var monsterAttackLogMessage = 'The monster hits the player for ' + monsterAttackPoints;
+        logMessage(monsterAttackLogMessage, 'danger');
+    }
+
+    function logMessage(message, messageBackgroundColor) {
+        if (!messageBackgroundColor) {
+            messageBackgroundColor = 'primary';
+        }
+
+        var el = $('<div>').addClass(`bg-${messageBackgroundColor} col-12 text-white text-uppercase`).text(message);
+
+        $('#log').append(el);
     }
 
     new Vue({
@@ -27,6 +54,9 @@
         methods: {
             startGame: function (event) {
                 this.gameStarted = !this.gameStarted;
+
+                this.playerBlood = 100;
+                this.monsterBlood = 100;
             },
             attack: function (event) {
                 doDamage.call(this);
@@ -35,13 +65,18 @@
                 doDamage.call(this, isSpecialAttack = true);
             },
             heal: function (event) {
-                this.playerBlood += generateRandomNumberInRange(1, 10);
+                var playerHealPoints = generateRandomNumberInRange(1, 10)
+
+                this.playerBlood += playerHealPoints;
 
                 if (this.playerBlood > 100) {
                     this.playerBlood = 100;
                 }
                 
                 var monsterAttackDamage = generateRandomNumberInRange(1, 10);
+
+                logHeal(playerHealPoints, monsterAttackDamage);
+
                 this.playerBlood -= monsterAttackDamage;
             },
             giveUp: function (event) {
