@@ -14,6 +14,7 @@
         var playerAttackDamage = generateRandomNumberInRange(minDamage, maxDamage);
 
         logAttack(playerAttackDamage, monsterAttackDamage);
+        this.gameRounds++;
     
         this.monsterBlood -= playerAttackDamage;
         this.playerBlood -= monsterAttackDamage;
@@ -39,7 +40,9 @@
             messageBackgroundColor = 'primary';
         }
 
-        var el = $('<div>').addClass(`bg-${messageBackgroundColor} col-12 text-white text-uppercase`).text(message);
+        var el = $('<div>')
+                    .addClass(`bg-${messageBackgroundColor} col-12 text-white text-uppercase`)
+                    .text(message);
 
         $('#log').append(el);
     }
@@ -48,6 +51,7 @@
         el: '#game-container',
         data: {
             gameStarted: false,
+            gameRounds: 0,
             playerBlood: 100,
             monsterBlood: 100
         },
@@ -78,6 +82,8 @@
                 logHeal(playerHealPoints, monsterAttackDamage);
 
                 this.playerBlood -= monsterAttackDamage;
+
+                this.gameRounds++;
             },
             giveUp: function (event) {
                 this.startGame();

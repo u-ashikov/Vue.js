@@ -11,9 +11,6 @@
     <div id="game-container" class="container-fluid">
         <div v-show="gameStarted" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
             The Game is started!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
           </div>
 
         <h1 class="text-center mt-3">The Monster Slayer</h1>
@@ -48,7 +45,7 @@
         </div>
 
         <!-- Game Action Log -->
-        <div v-if="gameStarted" id="log" class="border rounded row mt-3 mx-2"></div>
+        <div v-show="gameStarted && gameRounds > 0" id="log" class="border rounded row mt-3 mx-2 overflow-auto" style="max-height:18em;"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -57,5 +54,14 @@
 
     <script src="../../vue.js"></script>
     <script src="app.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // show the alert
+            setTimeout(function() {
+                $(".alert").alert('close');
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
