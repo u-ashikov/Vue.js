@@ -47,6 +47,14 @@
         $('#log').append(el);
     }
 
+    function showAlert(type, title, message) {
+        return Swal.fire({
+            icon: type,
+            title: title,
+            text:  message
+          });
+    }
+
     new Vue({
         el: '#game-container',
         data: {
@@ -95,12 +103,22 @@
         watch: {
             monsterBlood: function() {
                 if (this.monsterBlood <= 0) {
-                    alert('The monster is dead!');
+                    var alertMessage = 'After ' + this.gameRounds + ' rounds you slayed the monster!';
+
+                    showAlert('success', 'Congratulations', alertMessage)
+                        .then((result) => {
+                        this.startGame();
+                    });
                 }
             },
             playerBlood: function () {
                 if (this.playerBlood <= 0) {
-                    alert('You are dead!');
+                    var alertMessage = 'After ' + this.gameRounds + ' rounds you have been slayed by the monster!';
+
+                    showAlert('error', 'Game Over', alertMessage)
+                        .then((result) => {
+                        this.startGame();
+                    });
                 }
             }
         }
