@@ -22,21 +22,21 @@
         <button v-if="!gameStarted" v-on:click="startGame()" class="btn btn-outline-success d-block mx-auto mt-3">Start New Game</button>
 
         <!-- Players -->
-        <div v-if="gameStarted" class="row">
-            <div class="progress col-4">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        <div v-if="gameStarted" class="row d-flex justify-content-around my-4">
+            <div class="progress col-4 px-0">
+                <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: playerBlood + '%'}" v-bind:aria-valuenow="playerBlood" aria-valuemin="0" aria-valuemax="100">{{playerBlood}}</div>
             </div>
-            <div class="progress col-4">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress col-4 px-0">
+                <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: monsterBlood + '%'}" v-bind:aria-valuenow="monsterBlood" aria-valuemin="0" aria-valuemax="100">{{monsterBlood}}</div>
             </div>
         </div>
         
         <!-- Game Control Panel -->
         <div v-if="gameStarted" class="border rounded row d-flex justify-content-around mx-2">
-            <button class="btn btn-outline-danger col-md-2 my-3 mx-2">Attack</button>
-            <button class="btn btn-outline-warning col-md-2 my-3 mx-2">Special Attack</button>
-            <button class="btn btn-outline-success col-md-2 my-3 mx-2">Heal</button>
-            <button v-on:click="giveUp()" class="btn btn-outline-info col-md-2 my-3 mx-2">Give Up</button>
+            <button class="btn btn-outline-danger col-md-2 my-3 mx-2" v-on:click="attack()">Attack</button>
+            <button class="btn btn-outline-warning col-md-2 my-3 mx-2" v-on:click="specialAttack()">Special Attack</button>
+            <button class="btn btn-outline-success col-md-2 my-3 mx-2" v-on:click="heal()">Heal</button>
+            <button class="btn btn-outline-info col-md-2 my-3 mx-2" v-on:click="giveUp()">Give Up</button>
         </div>
 
         <!-- Game Action Log -->
