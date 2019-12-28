@@ -61,6 +61,9 @@
 
                 this.playerBlood = 100;
                 this.monsterBlood = 100;
+                this.gameRounds = 0;
+
+                $('#log').empty();
             },
             attack: function (event) {
                 doDamage.call(this);
