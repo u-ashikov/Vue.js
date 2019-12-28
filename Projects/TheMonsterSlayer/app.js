@@ -40,11 +40,10 @@
             messageBackgroundColor = 'primary';
         }
 
-        var el = $('<div>')
-                    .addClass(`bg-${messageBackgroundColor} col-12 text-white text-uppercase`)
-                    .text(message);
-
-        $('#log').append(el);
+        $('<div>')
+                .addClass(`bg-${messageBackgroundColor} col-12 text-white text-uppercase`)
+                .text(message)
+                .appendTo('#log');
     }
 
     function showAlert(type, title, message) {
