@@ -28,8 +28,8 @@
         logMessage(playerAttackLogMessage, 'primary');
     }
 
-    function logHeal(playerHealPoints, monsterAttackPoints) {
-        logMessage('The player healed himself for ' + playerHealPoints, 'success');
+    function logHeal(monsterAttackPoints) {
+        logMessage('The player healed himself for 10', 'success');
 
         var monsterAttackLogMessage = 'The monster hits the player for ' + monsterAttackPoints;
         logMessage(monsterAttackLogMessage, 'danger');
@@ -87,7 +87,7 @@
                 
                 var monsterAttackDamage = calculateAttackDamage(1, 10);
 
-                logHeal(playerHealPoints, monsterAttackDamage);
+                logHeal(monsterAttackDamage);
 
                 this.playerBlood -= monsterAttackDamage;
 
