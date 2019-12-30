@@ -1,5 +1,5 @@
 (function () {
-    function generateRandomNumberInRange(min, max) {
+    function calculateAttackDamage(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
@@ -7,11 +7,11 @@
         var minDamage = 1;
         var maxDamage = 10;
 
-        var monsterAttackDamage = generateRandomNumberInRange(minDamage, maxDamage);
+        var monsterAttackDamage = calculateAttackDamage(minDamage, maxDamage);
 
         maxDamage = isSpecialAttack ? 20 : maxDamage;
 
-        var playerAttackDamage = generateRandomNumberInRange(minDamage, maxDamage);
+        var playerAttackDamage = calculateAttackDamage(minDamage, maxDamage);
 
         logAttack(playerAttackDamage, monsterAttackDamage);
         this.gameRounds++;
@@ -51,7 +51,7 @@
             icon: type,
             title: title,
             text:  message
-          });
+        });
     }
 
     new Vue({
@@ -79,15 +79,13 @@
                 doDamage.call(this, isSpecialAttack = true);
             },
             heal: function (event) {
-                var playerHealPoints = generateRandomNumberInRange(1, 10)
-
-                this.playerBlood += playerHealPoints;
+                this.playerBlood += 10;
 
                 if (this.playerBlood > 100) {
                     this.playerBlood = 100;
                 }
                 
-                var monsterAttackDamage = generateRandomNumberInRange(1, 10);
+                var monsterAttackDamage = calculateAttackDamage(1, 10);
 
                 logHeal(playerHealPoints, monsterAttackDamage);
 
