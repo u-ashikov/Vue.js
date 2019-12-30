@@ -22,14 +22,14 @@
         <div v-if="gameStarted" class="row d-flex justify-content-around my-4">
             <div class="col-4 row">
                 <h4 class="col-12 text-center">Player</h4>
-                <img src="https://i.pinimg.com/originals/f8/52/5e/f8525e858e75371eff0a99a683341e03.jpg" class="img-fluid my-3 mx-auto" width="50%" />
+                <img src="images/knight.jpg" alt="knight" class="img-fluid my-3 mx-auto" width="50%" />
                 <div class="progress col-12 px-0">
                     <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: playerBlood + '%'}" v-bind:aria-valuenow="playerBlood" aria-valuemin="0" aria-valuemax="100">{{playerBlood}}</div>
                 </div>
             </div>
             <div class="col-4 row">
                 <h4 class="col-12 text-center">Monster</h4>
-                <img src="https://i.neoseeker.com/ca/pandoras_tower_conceptart_lrU3L.jpg" class="img-fluid bg-white my-3 mx-auto" width="50%" />
+                <img src="images/monster.jpg" alt="monster" class="img-fluid bg-white my-3 mx-auto" width="50%" />
                 <div class="progress col-12 px-0">
                     <div class="progress-bar bg-danger" role="progressbar" v-bind:style="{width: monsterBlood + '%'}" v-bind:aria-valuenow="monsterBlood" aria-valuemin="0" aria-valuemax="100">{{monsterBlood}}</div>
                 </div>
