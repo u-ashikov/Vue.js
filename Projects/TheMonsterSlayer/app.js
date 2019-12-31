@@ -17,7 +17,10 @@
         this.gameRounds++;
     
         this.monsterBlood -= playerAttackDamage;
-        this.playerBlood -= monsterAttackDamage;
+
+        if (this.monsterBlood > 0) {
+            this.playerBlood -= monsterAttackDamage;
+        }
     }
 
     function logAttack(playerAttackPoints, monsterAttackPoints, ) {
