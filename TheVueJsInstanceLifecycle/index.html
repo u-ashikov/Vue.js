@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue JS Instance Lifecycle</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <button v-on:click="changeTitle()">Change Title</button>
+        <button v-on:click="destroy()">Destroy Instance</button>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
