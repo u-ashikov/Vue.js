@@ -3,6 +3,7 @@
         <h3>You may view the User Details here</h3>
         <p>Many Details</p>
         <p>My Name is: {{ userName }}</p>
+        <p>My Age is: {{ userAge }}</p>
         <button v-on:click="resetName()">Reset Name</button>
     </div>
 </template>
@@ -14,6 +15,9 @@
                 type: String,
                 required: true,
                 default: 'Yulian'
+            },
+            userAge : {
+                type: Number
             }
         },
         methods: {
