@@ -9,6 +9,8 @@
 </template>
 
 <script>
+    import { eventBus } from '../main';
+
     export default {
         props: {
             userName: {
@@ -23,8 +25,17 @@
         methods: {
             resetName: function() {
                 this.userName = 'Yulian'
-                this.$emit('username-changed', this.userName);
+                eventBus.$emit('username-changed', this.userName);
             }
+        },
+        created: function () {
+            eventBus.$on('userage-changed', (age) =>  {
+                this.userAge = age;
+            });
+
+            eventBus.$on('username-changed', (name) => {
+                this.userName = name;
+            })
         }
     }
 </script>

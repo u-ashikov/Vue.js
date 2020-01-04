@@ -11,14 +11,12 @@
                 <app-user-detail 
                     v-bind:userName="name"
                     v-bind:userAge="age"
-                    v-on:username-changed="name = $event"
                 >
                 </app-user-detail>
             </div>
             <div class="col-xs-12 col-sm-6">
                 <app-user-edit 
                     v-bind:userAge="age"
-                    v-on:userage-changed="age = $event"
                 >
                 </app-user-edit>
             </div>
@@ -29,6 +27,7 @@
 <script>
     import UserDetail from './UserDetail.vue';
     import UserEdit from './UserEdit.vue';
+    import { eventBus } from '../main'; 
 
     export default {
         data: function () {
@@ -45,6 +44,15 @@
         components: {
             appUserDetail: UserDetail,
             appUserEdit: UserEdit
+        },
+        mounted: function () {
+            eventBus.$on('username-changed', (name) => {
+                this.name = name;
+            });
+
+            eventBus.$on('userage-changed', (userAge) => {
+                this.age = userAge;
+            });
         }
     }
 </script>
