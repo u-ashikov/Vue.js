@@ -27,7 +27,7 @@
     import Vue from 'vue'
     import Header from './components/Header.vue'
     import Footer from './components/Footer.vue'
-    import ServerComponent from './components/Server.vue'
+    import ServerComponent from './components/Servers.vue'
     import ServerDetais from './components/ServerDetails.vue'
 
     export default {
