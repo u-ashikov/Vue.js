@@ -1,6 +1,10 @@
 <template>
-    <div class="quote card-body border rounded col-md-2">
-        {{ quoteText }} {{ index }}!
+    <div class="col mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                {{ quoteText }} {{ index }}!
+            </div>
+        </div>
     </div>
 </template>
 
