@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     getBooks: function() {
-      this.$http
-        .get("Books.json")
+      this.resource
+        .getAllBooks()
         .then(response => {
           return response.json();
         })
@@ -45,8 +45,8 @@ export default {
         });
     },
     createBook: function () {
-      this.$http
-        .post("Books.json", { title: this.title, author: this.author })
+      this.resource
+        .createBook({ title: this.title, author: this.author })
         .then(response => {
           this.title = '';
           this.author = '';
@@ -55,7 +55,12 @@ export default {
     }
   },
   created: function () {
-    this.resource = this.$resource('Books.json');
+    const customActions = {
+      getAllBooks: { method: "GET", url: "Books.json" },
+      createBook: { method: "POST", url: "Books.json" }
+    }
+
+    this.resource = this.$resource('Books.json', {}, customActions);
   }
 };
 </script>
