@@ -36,7 +36,7 @@ export default {
   methods: {
     getBooks: function() {
       this.$http
-        .get("https://books-b6a94.firebaseio.com/Books.json")
+        .get("Books.json")
         .then(response => {
           return response.json();
         })
@@ -46,13 +46,16 @@ export default {
     },
     createBook: function () {
       this.$http
-        .post("https://books-b6a94.firebaseio.com/Books.json", { title: this.title, author: this.author })
+        .post("Books.json", { title: this.title, author: this.author })
         .then(response => {
           this.title = '';
           this.author = '';
         }, 
         error => console.log(error));
     }
+  },
+  created: function () {
+    this.resource = this.$resource('Books.json');
   }
 };
 </script>

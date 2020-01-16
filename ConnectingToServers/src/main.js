@@ -8,3 +8,5 @@ new Vue({
 });
 
 Vue.use(VueResource);
+
+Vue.http.options.root = 'https://books-b6a94.firebaseio.com';
