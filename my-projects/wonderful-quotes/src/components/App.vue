@@ -12,12 +12,7 @@
       </div>
     </div>
 
-    <form class="col-md-4 mx-auto">
-      <h5>Quote</h5>
-      <textarea id="quote-text" class="form-control" rows="3"></textarea>
-
-      <button id="add-quote-btn" class="btn btn-info my-3 d-block mx-auto" v-on:click="saveQuote($event)">Add Quote</button>
-    </form>
+    <app-create-quote></app-create-quote>
 
     <app-quotes-deck v-bind:quotes="quotes">
     </app-quotes-deck>
@@ -32,11 +27,13 @@
 import { eventBus } from '../main'
 import Quote from '../components/Quote'
 import QuotesDeck from '../components/QuotesDeck'
+import CreateQuote from '../components/CreateQuote'
 
 export default {
   components: { 
     'app-quote': Quote,
-    'app-quotes-deck': QuotesDeck
+    'app-quotes-deck': QuotesDeck,
+    'app-create-quote': CreateQuote
   },
   data: function () {
     return {
@@ -59,26 +56,17 @@ export default {
   mounted: function () {
     eventBus.$on('quoteRemoved', (index) => {
       if (index >= 0 && index < this.quotes.length) {
-        this.quotes.splice(index, 1);
-        this.quotesCount--;
+          this.quotes.splice(index, 1);
+          this.quotesCount--;
       }
     });
-  },
-  methods: {
-    saveQuote: function (event) {
-      event.preventDefault();
 
+    eventBus.$on('quoteCreated', (quoteText) => {
       if (this.quotesCount != this.maxQuotesCount) {
-        var quoteText = $('#quote-text').val();
-        $('#quote-text').val('');
-
-        this.quotes.push(quoteText);
-        this.quotesCount++;
+          this.quotes.push(quoteText);
+          this.quotesCount++;
       }
-    }
+    })
   }
 }
 </script>
-
-<style>
-</style>
