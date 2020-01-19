@@ -4,6 +4,8 @@
     <hr />
     <p>User with id: {{ id }} has been rendered.</p>
     <button class="btn btn-primary" v-on:click="navigateToHome()">Go To Home</button>
+    <hr/>
+    <router-view></router-view>
   </div>
 </template>
 
