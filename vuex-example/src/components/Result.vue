@@ -1,13 +1,13 @@
 <template>
-    <p>Counter is: {{ counter }}</p>
+    <p>Counter is: {{ multipliedCounter }}</p>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         computed: {
-            counter: function () {
-                return this.$store.state.counter;
-            }
+            ...mapGetters(['multipliedCounter'])
         }
     }
 </script>
