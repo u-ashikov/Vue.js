@@ -13,6 +13,9 @@ export default {
         return {
             id: this.$route.params.id
         }
+    },
+    beforeRouteEnter: function (to, from , next) {
+        next();
     }
 }
 </script>
