@@ -3,7 +3,7 @@
     <h1 class="text-center">Create New Book</h1>
     <hr />
 
-    <form class="col-md-6 mx-auto" method="post">
+    <form class="col-md-4 mx-auto" method="post">
         <div class="form-group">
             <label for="title" class="h6">Title</label>
             <input name="title" class="form-control"  v-model="title"/>
