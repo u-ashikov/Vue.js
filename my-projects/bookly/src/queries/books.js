@@ -1,4 +1,4 @@
-import axios from '../../node_modules/axios'
+import axios from 'axios'
 
 var axiosInstance = axios.create({
     baseURL: 'https://books-b6a94.firebaseio.com'

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import books from '../../dal/books'
+import books from '../../queries/books'
 import Book from './Book'
 
 export default {
