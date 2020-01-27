@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import books from '../../dal/books'
 import Book from './Book'
 
 export default {
@@ -25,7 +25,7 @@ export default {
         appBook: Book
     },
     created: function () {
-        axios.get('https://books-b6a94.firebaseio.com/Books.json')
+        books.getAll()
         .then(response => {
             var allBooks = [];
 

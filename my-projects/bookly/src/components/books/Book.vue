@@ -12,14 +12,14 @@
 </template>
 
 <script>
-import axios from 'axios'
+import books from '../../dal/books'
 
 export default {
     props: ['id', 'title', 'author'],
     methods: {
         deleteBook: function (id) {
             var self = this;
-            axios.delete('https://books-b6a94.firebaseio.com/Books/' + id + '.json')
+            books.deleteById(id)
                 .then(function (response) {
                     if (response.status == 200) {
                         self.$router.go();

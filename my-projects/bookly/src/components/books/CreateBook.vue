@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import books from '../../dal/books'
 
 export default {
     data: function () {
@@ -33,12 +33,12 @@ export default {
         createBook: function () {
             var self = this;
 
-            axios.post('https://books-b6a94.firebaseio.com/Books.json', { author: this.author, title: this.title})
-            .then(function (response) {
-                if (response && response.status == 200) {
-                    self.$router.push('/books/all');
-                }
-            });
+            books.create(this.title, this.author)
+                .then(function (response) {
+                    if (response && response.status == 200) {
+                        self.$router.push('/books/all');
+                    }
+                });
 
             this.title = '';
             this.author = '';
