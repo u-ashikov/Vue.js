@@ -4,8 +4,8 @@ var axiosInstance = axios.create({
     baseURL: 'https://books-b6a94.firebaseio.com'
 });
 
-function create(title, author) {
-    return axiosInstance.post('/Books.json', { author: author, title: title});
+function create(title, author, description, isbnNumber) {
+    return axiosInstance.post('/Books.json', { author, title, description, isbnNumber });
 }
 
 function getAll() {
