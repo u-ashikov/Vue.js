@@ -12,6 +12,10 @@ function getAll() {
     return axiosInstance.get('/Books.json');
 }
 
+function getById(id) {
+    return axiosInstance.get('/Books/' + id + '.json');
+}
+
 function deleteById(id) {
     return axiosInstance.delete('/Books/' + id + '.json');
 }
@@ -19,5 +23,6 @@ function deleteById(id) {
 export default {
     create,
     getAll,
+    getById,
     deleteById
 }
