@@ -6,6 +6,7 @@
         <p class="card-text">{{ author }}</p>
         <router-link tag="a" class="btn btn-primary" :to="{ name: 'details', params: { id: id }}">Details</router-link>
         <button class="btn btn-danger" v-on:click="deleteBook(id)">Delete</button>
+        <router-link tag="a" class="btn btn-primary" :to="{ name: 'edit', params: { id: id }}">Edit</router-link>
       </div>
     </div>
   </div>

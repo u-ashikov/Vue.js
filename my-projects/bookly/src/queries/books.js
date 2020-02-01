@@ -8,6 +8,10 @@ function create(title, author, description, isbnNumber) {
     return axiosInstance.post('/Books.json', { author, title, description, isbnNumber });
 }
 
+function edit(id, title, author, description, isbnNumber) {
+    return axiosInstance.put('/Books/' + id + '.json', { author, title, description, isbnNumber });
+}
+
 function getAll() {
     return axiosInstance.get('/Books.json');
 }
@@ -22,6 +26,7 @@ function deleteById(id) {
 
 export default {
     create,
+    edit,
     getAll,
     getById,
     deleteById
