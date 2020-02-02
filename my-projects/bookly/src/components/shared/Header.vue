@@ -17,6 +17,8 @@
         <router-link tag="a" class="nav-item nav-link" to="/">Home</router-link>
         <router-link tag="a" class="nav-item nav-link" to="/books/all">Books</router-link>
         <router-link tag="a" class="nav-item nav-link" to="/books/create">Create New</router-link>
+        <router-link tag="a" class="nav-item nav-link" to="/users/register">Register</router-link>
+        <router-link tag="a" class="nav-item nav-link" to="/users/login">Login</router-link>
       </div>
     </div>
   </nav>
