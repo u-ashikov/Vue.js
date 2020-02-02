@@ -30,6 +30,11 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
+        setLogoutTimer: function (context, expirationTime) {
+            setTimeout(() => {
+                context.commit('clearUserData');
+            }, expirationTime * 1000);
+        },
         login: function (context, user) {
             users.login(user.email, user.password)
                 .then(function (response) {
@@ -40,6 +45,7 @@ export const store = new Vuex.Store({
                         });
 
                         context.dispatch('fetchUser');
+                        context.dispatch('setLogoutTimer', response.data.expiresIn);
                     }
                 })
                 .catch(function (error) {
@@ -57,6 +63,7 @@ export const store = new Vuex.Store({
                         });
 
                         context.dispatch('saveUser', user);
+                        context.dispatch('setLogoutTimer', response.data.expiresIn);
                     }
                 })
                 .catch(function (error) {
