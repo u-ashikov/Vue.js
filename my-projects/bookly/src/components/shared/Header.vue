@@ -15,11 +15,21 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <router-link tag="a" class="nav-item nav-link" to="/">Home</router-link>
-        <router-link tag="a" class="nav-item nav-link" to="/books/all">Books</router-link>
-        <router-link tag="a" class="nav-item nav-link" to="/books/create">Create New</router-link>
-        <router-link tag="a" class="nav-item nav-link" to="/users/register">Register</router-link>
-        <router-link tag="a" class="nav-item nav-link" to="/users/login">Login</router-link>
+        <router-link v-if="isAuthenticated" tag="a" class="nav-item nav-link" to="/books/all">Books</router-link>
+        <router-link v-if="isAuthenticated" tag="a" class="nav-item nav-link" to="/books/create">Create New</router-link>
+        <router-link v-if="!isAuthenticated" tag="a" class="nav-item nav-link" to="/users/register">Register</router-link>
+        <router-link v-if="!isAuthenticated" tag="a" class="nav-item nav-link" to="/users/login">Login</router-link>
       </div>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  computed: {
+    isAuthenticated: function () {
+        return this.$store.getters.isAuthenticated;
+    }
+  }
+}
+</script>

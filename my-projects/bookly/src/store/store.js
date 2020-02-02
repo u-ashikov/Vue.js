@@ -1,7 +1,7 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import users from '../queries/users'
-import router from 'vue-router'
+import router from '../routing/router'
 
 Vue.use(Vuex);
 
@@ -98,6 +98,9 @@ export const store = new Vuex.Store({
         },
         idToken: function (state) {
             return state.idToken;
+        },
+        isAuthenticated: function (state) {
+            return state.idToken != null;
         }
     }
 });
