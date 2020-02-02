@@ -4,6 +4,8 @@ import CreateBook from '../components/books/CreateBook'
 import EditBook from '../components/books/EditBook'
 import ListBooks from '../components/books/ListBooks'
 import Details from '../components/books/Details'
+import Register from '../components/users/Register'
+import Login from '../components/users/Login'
 
 export const router = new VueRouter({
     routes: [
@@ -11,7 +13,9 @@ export const router = new VueRouter({
         { path: '/books/all', component: ListBooks },
         { path: '/books/create', component: CreateBook },
         { path: '/books/details/:id', name: 'details', component: Details },
-        { path: '/books/edit/:id', name: 'edit', component: EditBook }
+        { path: '/books/edit/:id', name: 'edit', component: EditBook },
+        { path: '/users/register', name: 'register', component: Register },
+        { path: '/users/login', name: 'login', component: Login }
       ],
       mode: "history"
 })
