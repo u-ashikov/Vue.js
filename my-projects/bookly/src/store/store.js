@@ -1,7 +1,7 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import users from '../queries/users'
-import router from '../routing/router'
+import router from '../../node_modules/vue-router'
 
 Vue.use(Vuex);
 
@@ -19,6 +19,11 @@ export const store = new Vuex.Store({
         register: function (state, userData) {
             state.idToken = userData.idToken;
             state.userId = userData.userId;
+        },
+        clearUserData: function (state) {
+            state.idToken = null;
+            state.userId = null;
+            state.user = null;
         },
         storeUser: function (state, user) {
             state.user = user;
@@ -57,6 +62,14 @@ export const store = new Vuex.Store({
                 .catch(function (error) {
                     console.error(error);
                 });
+        },
+        logout: function (context) {
+            if (!context.state.idToken) {
+                return;
+            }
+
+            context.commit('clearUserData');
+            router.push('/');
         },
         saveUser: function (context, user) {
             if (!context.state.idToken) {

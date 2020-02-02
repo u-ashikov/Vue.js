@@ -19,6 +19,7 @@
         <router-link v-if="isAuthenticated" tag="a" class="nav-item nav-link" to="/books/create">Create New</router-link>
         <router-link v-if="!isAuthenticated" tag="a" class="nav-item nav-link" to="/users/register">Register</router-link>
         <router-link v-if="!isAuthenticated" tag="a" class="nav-item nav-link" to="/users/login">Login</router-link>
+        <a v-if="isAuthenticated" href="/" class="nav-item nav-link" v-on:click="onLogout">Logout</a>
       </div>
     </div>
   </nav>
@@ -29,6 +30,11 @@ export default {
   computed: {
     isAuthenticated: function () {
         return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods: {
+    onLogout: function () {
+        this.$store.dispatch('logout');
     }
   }
 }
