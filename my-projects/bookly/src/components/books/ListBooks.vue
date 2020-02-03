@@ -14,6 +14,7 @@
 <script>
 import books from '../../queries/books'
 import Book from './Book'
+import {store} from '../../store/store'
 
 export default {
     data: function () {
@@ -25,7 +26,7 @@ export default {
         appBook: Book
     },
     created: function () {
-        books.getAll()
+        books.getAll(store.getters.idToken)
         .then(response => {
             var allBooks = [];
 

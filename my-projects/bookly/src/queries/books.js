@@ -12,8 +12,8 @@ function edit(id, title, author, description, isbnNumber) {
     return axiosInstance.put('/Books/' + id + '.json', { author, title, description, isbnNumber });
 }
 
-function getAll() {
-    return axiosInstance.get('/Books.json');
+function getAll(idToken) {
+    return axiosInstance.get('/Books.json' + '?auth=' + idToken);
 }
 
 function getById(id) {
