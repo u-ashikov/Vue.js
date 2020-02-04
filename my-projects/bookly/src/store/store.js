@@ -64,12 +64,7 @@ export const store = new Vuex.Store({
                             userId: response.data.localId
                         });
 
-                        var now = new Date();
-                        var expirationDate = new Date(now.getTime() + response.data.expiresIn * 1000);
-
-                        localStorage.setItem('expirationDate',expirationDate);
-                        localStorage.setItem('idToken', response.data.idToken);
-                        localStorage.setItem('userId', response.data.localId);
+                        context.dispatch('setLocalStorageUserData', response.data);
 
                         context.dispatch('fetchUser');
                         context.dispatch('setLogoutTimer', response.data.expiresIn);
@@ -89,12 +84,7 @@ export const store = new Vuex.Store({
                             userId: response.data.localId
                         });
 
-                        var now = new Date();
-                        var expirationDate = new Date(now.getTime() + response.data.expiresIn * 1000);
-
-                        localStorage.setItem('expirationDate',expirationDate);
-                        localStorage.setItem('idToken', response.data.idToken);
-                        localStorage.setItem('userId', response.data.localId);
+                        context.dispatch('setLocalStorageUserData', response.data);
 
                         context.dispatch('saveUser', user);
                         context.dispatch('setLogoutTimer', response.data.expiresIn);
@@ -147,6 +137,14 @@ export const store = new Vuex.Store({
                 .catch(function (error) {
                     console.error(error);
                 });
+        },
+        setLocalStorageUserData: function (context, authData) {
+            var now = new Date();
+            var expirationDate = new Date(now.getTime() + authData.expiresIn * 1000);
+
+            localStorage.setItem('expirationDate',expirationDate);
+            localStorage.setItem('idToken', authData.idToken);
+            localStorage.setItem('userId', authData.localId);
         }
     },
     getters: {
