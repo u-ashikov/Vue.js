@@ -30,6 +30,26 @@ export const store = new Vuex.Store({
         }
     },
     actions: {
+        tryAutoLogin: function (context) {
+            var idToken = localStorage.getItem('idToken');
+
+            if (!idToken) {
+                return;
+            }
+
+            var expirationDate = localStorage.getItem('expirationDate');
+
+            if (!expirationDate || expirationDate < new Date()) {
+                return;
+            }
+
+            var userId = localStorage.getItem('userId');
+
+            context.commit('login', {
+                idToken: idToken,
+                userId: userId
+            });
+        },
         setLogoutTimer: function (context, expirationTime) {
             setTimeout(() => {
                 context.commit('clearUserData');
@@ -43,6 +63,13 @@ export const store = new Vuex.Store({
                             idToken: response.data.idToken,
                             userId: response.data.localId
                         });
+
+                        var now = new Date();
+                        var expirationDate = new Date(now.getTime() + response.data.expiresIn * 1000);
+
+                        localStorage.setItem('expirationDate',expirationDate);
+                        localStorage.setItem('idToken', response.data.idToken);
+                        localStorage.setItem('userId', response.data.localId);
 
                         context.dispatch('fetchUser');
                         context.dispatch('setLogoutTimer', response.data.expiresIn);
@@ -62,6 +89,13 @@ export const store = new Vuex.Store({
                             userId: response.data.localId
                         });
 
+                        var now = new Date();
+                        var expirationDate = new Date(now.getTime() + response.data.expiresIn * 1000);
+
+                        localStorage.setItem('expirationDate',expirationDate);
+                        localStorage.setItem('idToken', response.data.idToken);
+                        localStorage.setItem('userId', response.data.localId);
+
                         context.dispatch('saveUser', user);
                         context.dispatch('setLogoutTimer', response.data.expiresIn);
                     }
@@ -76,6 +110,9 @@ export const store = new Vuex.Store({
             }
 
             context.commit('clearUserData');
+
+            localStorage.clear();
+
             router.push('/');
         },
         saveUser: function (context, user) {
