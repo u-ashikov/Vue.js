@@ -20,7 +20,6 @@
 
 <script>
 import users from '../../queries/users'
-import { store } from '../../store/store'
 
 export default {
     data: function () {
@@ -33,7 +32,7 @@ export default {
         loginUser: function () {
             var self = this;
 
-            store.dispatch('login', { email: this.email, password: this.password })
+            this.$store.dispatch('login', { email: this.email, password: this.password })
                 .then(function () {
                     self.$router.push('/');
                 });
