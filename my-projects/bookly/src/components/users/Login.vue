@@ -15,6 +15,10 @@
 
         <input type="submit" class="btn btn-success" value="Login" />
     </form>
+    <hr class="col-md-4 mx-auto">
+    <p class="text-left col-md-4 offset-md-4">
+      Don't have an account? Register from <router-link tag="a" to="/users/register">here.</router-link>
+    </p>
     </div>
 </template>
 

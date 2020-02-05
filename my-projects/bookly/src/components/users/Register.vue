@@ -20,6 +20,10 @@
 
       <input type="submit" class="btn btn-success" value="Register" />
     </form>
+    <hr class="col-md-4 mx-auto">
+    <p class="text-left col-md-4 offset-md-4">
+      Already have an account? Login from <router-link tag="a" to="/users/login">here.</router-link>
+    </p>
   </div>
 </template>
 
