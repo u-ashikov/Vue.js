@@ -1,4 +1,5 @@
 import VueRouter from "vue-router"
+
 import Home from '../components/Home'
 import CreateBook from '../components/books/CreateBook'
 import EditBook from '../components/books/EditBook'
@@ -7,7 +8,9 @@ import Details from '../components/books/Details'
 import Register from '../components/users/Register'
 import Login from '../components/users/Login'
 
-export const router = new VueRouter({
+import { store } from '../store/store'
+
+var router = new VueRouter({
     routes: [
         { path: '', component: Home },
         { path: '/books/all', component: ListBooks },
@@ -18,4 +21,19 @@ export const router = new VueRouter({
         { path: '/users/login', name: 'login', component: Login }
       ],
       mode: "history"
-})
+});
+
+router.beforeEach(function (to, from, next) {
+    var isAuthenticated = store.getters.isAuthenticated;
+
+    if (!isAuthenticated 
+        && to.path != '/users/login' 
+        && to.path != '/users/register' 
+        && to.path != '/') {
+        next({ name: 'login'});
+    } else {
+        next();
+    }
+});
+
+export { router }
