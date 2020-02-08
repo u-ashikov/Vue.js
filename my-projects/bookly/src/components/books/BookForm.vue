@@ -43,10 +43,12 @@ export default {
   methods: {
     submit: function() {
         var bookId = this.$route.params.id;
+        var idToken = this.$store.getters.idToken;
+
         if (this.isEdit) {
-            this.onSubmit(bookId, this.title, this.author, this.description, this.isbnNumber);
+            this.onSubmit(bookId, this.title, this.author, this.description, this.isbnNumber, idToken);
         } else {
-            this.onSubmit(this.title, this.author, this.description, this.isbnNumber);
+            this.onSubmit(this.title, this.author, this.description, this.isbnNumber, idToken);
         }
 
       this.title = "";
@@ -60,8 +62,10 @@ export default {
 
     if (this.isEdit) {
       var bookId = self.$route.params.id;
+      var idToken = this.$store.getters.idToken;
 
-      books.getById(bookId).then(function(response) {
+      books.getById(bookId, idToken)
+      .then(function(response) {
         if (response && response.status == 200) {
           var book = response.data;
 

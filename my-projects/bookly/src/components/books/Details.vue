@@ -27,10 +27,11 @@ export default {
   },
   created: function() {
     var self = this;
+    var idToken = this.$store.getters.idToken;
 
     this.id = this.$route.params.id;
 
-    books.getById(this.id)
+    books.getById(this.id, idToken)
         .then(function(response) {
             if (response && response.data) {
                 var book = response.data;

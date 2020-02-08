@@ -20,7 +20,9 @@ export default {
     methods: {
         deleteBook: function (id) {
             var self = this;
-            books.deleteById(id)
+            var idToken = this.$store.getters.idToken;
+
+            books.deleteById(id, idToken)
                 .then(function (response) {
                     if (response.status == 200) {
                         self.$router.go();

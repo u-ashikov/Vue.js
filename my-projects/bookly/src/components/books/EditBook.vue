@@ -22,10 +22,10 @@ import BookForm from "../books/BookForm";
 export default {
     components: { appBookForm: BookForm },
     methods: {
-    editBook: function(bookId, title, author, description, isbnNumber) {
+    editBook: function(bookId, title, author, description, isbnNumber, idToken) {
       var self = this;
       
-      books.edit(bookId, title, author, description, isbnNumber)
+      books.edit(bookId, title, author, description, isbnNumber, idToken)
           .then(function (response) {
               if (response && response.status == 200) {
                   self.$router.push('/books/all');

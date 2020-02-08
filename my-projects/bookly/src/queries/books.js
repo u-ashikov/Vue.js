@@ -4,24 +4,24 @@ var axiosInstance = axios.create({
     baseURL: 'https://books-b6a94.firebaseio.com'
 });
 
-function create(title, author, description, isbnNumber) {
-    return axiosInstance.post('/Books.json', { author, title, description, isbnNumber });
+function create(title, author, description, isbnNumber, idToken) {
+    return axiosInstance.post('/Books.json?auth=' + idToken, { author, title, description, isbnNumber });
 }
 
-function edit(id, title, author, description, isbnNumber) {
-    return axiosInstance.put('/Books/' + id + '.json', { author, title, description, isbnNumber });
+function edit(id, title, author, description, isbnNumber, idToken) {
+    return axiosInstance.put('/Books/' + id + '.json?auth=' + idToken, { author, title, description, isbnNumber });
 }
 
 function getAll(idToken) {
-    return axiosInstance.get('/Books.json' + '?auth=' + idToken);
+    return axiosInstance.get('/Books.json?auth=' + idToken);
 }
 
-function getById(id) {
-    return axiosInstance.get('/Books/' + id + '.json');
+function getById(id, idToken) {
+    return axiosInstance.get('/Books/' + id + '.json?auth=' + idToken);
 }
 
-function deleteById(id) {
-    return axiosInstance.delete('/Books/' + id + '.json');
+function deleteById(id, idToken) {
+    return axiosInstance.delete('/Books/' + id + '.json?auth=' + idToken);
 }
 
 export default {
