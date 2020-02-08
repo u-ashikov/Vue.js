@@ -72,10 +72,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    input.invalid {
-        border: 1px solid #fd4864;
-        background-color: #FFEEEE;
-    }
-</style>

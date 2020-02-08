@@ -20,3 +20,10 @@ export default {
   }
 }
 </script>
+
+<style>
+    input.invalid {
+        border: 1px solid #fd4864;
+        background-color: #FFEEEE;
+    }
+</style>
