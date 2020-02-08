@@ -53,7 +53,7 @@ const actions = {
         }, expirationTime * 1000);
     },
     login: function (context, user) {
-        users.login(user.email, user.password)
+        return users.login(user.email, user.password)
             .then(function (response) {
                 if (response && response.status == 200) {
                     context.commit('login', {
@@ -66,9 +66,13 @@ const actions = {
                     context.dispatch('fetchUser');
                     context.dispatch('setLogoutTimer', response.data.expiresIn);
                 }
+
+                return response;
             })
             .catch(function (error) {
                 console.error(error);
+
+                return 'Invalid login!';
             });
     },
     register: function (context, user) {
