@@ -77,11 +77,6 @@ export default {
         } else {
             this.onSubmit(this.title, this.author, this.description, this.isbnNumber, idToken);
         }
-
-      this.title = "";
-      this.author = "";
-      this.description = "";
-      this.isbnNumber = "";
     }
   },
   mounted: function() {
