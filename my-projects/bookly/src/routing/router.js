@@ -27,9 +27,9 @@ router.beforeEach(function (to, from, next) {
     var isAuthenticated = store.getters.isAuthenticated;
 
     if (!isAuthenticated 
-        && to.path != '/users/login' 
-        && to.path != '/users/register' 
-        && to.path != '/') {
+        && to.path !== '/users/login' 
+        && to.path !== '/users/register' 
+        && to.path !== '/') {
         next({ name: 'login'});
     } else {
         next();
