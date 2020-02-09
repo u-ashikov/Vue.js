@@ -14,15 +14,13 @@ export default {
   components: {
     appHeader: Header,
     appFooter: Footer
-  },
-  created: function () {
-    this.$store.dispatch('tryAutoLogin');
   }
 }
 </script>
 
 <style>
-    input.invalid {
+    input.invalid,
+    textarea.invalid {
         border: 1px solid #fd4864;
         background-color: #FFEEEE;
     }

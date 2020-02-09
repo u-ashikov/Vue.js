@@ -8,6 +8,8 @@ import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate);
 Vue.use(VueRouter);
 
+store.dispatch('tryAutoLogin');
+
 new Vue({
   el: '#app',
   store,
