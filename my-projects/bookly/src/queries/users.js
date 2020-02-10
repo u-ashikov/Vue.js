@@ -4,12 +4,12 @@ var axiosInstance = axios.create({
     baseURL: 'https://identitytoolkit.googleapis.com'
 })
 
-function register(email, password) {
-    return axiosInstance.post('/v1/accounts:signUp?key=AIzaSyBYveRqdiAYd1CjrtvNpXblNnqSZDEj5qE', { email, password, returnSecureToken: true });
-}
-
 function login(email, password) {
     return axiosInstance.post('/v1/accounts:signInWithPassword?key=AIzaSyBYveRqdiAYd1CjrtvNpXblNnqSZDEj5qE', { email, password, returnSecureToken: true });
+}
+
+function register(email, password) {
+    return axiosInstance.post('/v1/accounts:signUp?key=AIzaSyBYveRqdiAYd1CjrtvNpXblNnqSZDEj5qE', { email, password, returnSecureToken: true });
 }
 
 function save(username, email, password, idToken) {
@@ -29,8 +29,8 @@ function getByEmail(email) {
 }
 
 export default {
-    register,
     login,
+    register,
     save,
     getById,
     getByUsername,
