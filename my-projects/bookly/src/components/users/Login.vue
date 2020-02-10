@@ -28,7 +28,7 @@
 
 <script>
 import users from '../../queries/users'
-import { required, email } from 'vuelidate/lib/validators'
+import { validations } from '../../validations/users/login'
 
 export default {
     data: function () {
@@ -38,15 +38,7 @@ export default {
             loginFailed: false
         }
     },
-    validations: {
-        email: {
-            required,
-            email
-        },
-        password : {
-            required
-        }
-    },
+    validations: validations,
     methods: {
         loginUser: function () {
             var self = this;

@@ -36,7 +36,7 @@
 
 <script>
 import users from "../../queries/users"
-import { required, email, minLength } from 'vuelidate/lib/validators'
+import { validations } from '../../validations/users/register'
 
 export default {
   data: function() {
@@ -46,47 +46,7 @@ export default {
       password: ""
     };
   },
-  validations: {
-    username: {
-      required,
-      unique: function (val) {
-        if (val === '') {
-          return true;
-        }
-
-        return users.getByUsername(val)
-                .then(function (response) {
-                  if (response && response.status == 200) {
-                    return Object.keys(response.data).length == 0;
-                  }
-
-                  return true;
-                });
-      }
-    },
-    email: {
-      required,
-      email,
-      unique: function (val) {
-        if (val === '') {
-          return true;
-        }
-
-        return users.getByEmail(val)
-                .then(function (response) {
-                  if (response && response.status == 200) {
-                    return Object.keys(response.data).length == 0;
-                  }
-
-                  return true;
-                });
-      }
-    },
-    password: {
-      required,
-      minLength: minLength(6)
-    }
-  },
+  validations: validations,
   methods: {
     registerUser: function() {
         var self = this;
