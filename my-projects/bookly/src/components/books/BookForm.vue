@@ -32,7 +32,7 @@
 
 <script>
 import books from "../../queries/books";
-import { required, maxLength } from 'vuelidate/lib/validators'
+import { validations } from '../../validations/books/book'
 
 export default {
   props: {
@@ -47,22 +47,7 @@ export default {
       isbnNumber: ""
     };
   },
-  validations: {
-    title: {
-      required
-    },
-    author: {
-      required
-    },
-    description: {
-      required,
-      maxLength: maxLength(100)
-    },
-    isbnNumber: {
-      required,
-      maxLength: maxLength(10)
-    }
-  },
+  validations: validations,
   methods: {
     submit: function() {
         var bookId = this.$route.params.id;
